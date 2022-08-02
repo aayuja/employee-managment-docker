@@ -24,6 +24,9 @@ services:
     #container_name: admin-microservice
     ports:
     - "8180"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8761/eureka
       
     links: 
         - eureka-server
