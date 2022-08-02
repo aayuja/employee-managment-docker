@@ -1,13 +1,13 @@
 version: '3'
 services:
-  employee-management-eureka:
-    image: employee-management-eureka:1.0
+  eureka-server:
+    image: employee-management-eureka-server:1.0
     container_name: eureka-server
     expose:
     - "8761"
     ports: 
     - 8761:8761 
-  employee-microservice:
+  employee-service:
     image: employee-microservice:1.0
     #container_name: employee-microservice
     ports:
@@ -19,20 +19,17 @@ services:
     links: 
         - eureka-server
         
-  admin-microservice:
+  admin-service:
     image: admin-microservice:1.0
     #container_name: admin-microservice
     ports:
     - "8180"
-    environment:
-      - JAVA_OPTS=
-            -DEUREKA_SERVER=http://eureka-server:8761/eureka -DDB_USER=admin -DDB_PASSWORD=welcome1 -DJDBC_URL=jdbc:mariadb://training.calpumbnnhqy.us-east-1.rds.amazonaws.com:3306/training  #(name of eureka host==eureka container name)
       
     links: 
         - eureka-server
  
         
-  employee-managment-gateway:
+  gateway-service:
     image: employee-managment-gateway:1.0
     #container_name: gateway-service
     ports:
