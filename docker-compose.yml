@@ -30,6 +30,18 @@ services:
       
     links: 
         - eureka-server
+
+  employee-front:
+    image: employee-managment-front:1.0
+    #container_name: employee-front-end
+    ports:
+    - "8580"
+    environment:
+      - JAVA_OPTS=
+            -DEUREKA_SERVER=http://eureka-server:8761/eureka
+      
+    links: 
+        - eureka-server
  
         
   gateway-service:
